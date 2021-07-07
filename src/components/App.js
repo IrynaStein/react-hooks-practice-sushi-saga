@@ -15,7 +15,9 @@ useEffect(() => {
 }, [])
 
 function onEaten(sushi){
+  if (sushi.price < price){
     setPrice(mUV => mUV - sushi.price)
+  }  
 }
 console.log(price)
 

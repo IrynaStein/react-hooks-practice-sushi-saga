@@ -6,7 +6,7 @@ function Sushi({sushi, onEaten, wallet}) {
 
 console.log(wallet)
 function handleClick(){
-  if(wallet > 0){
+  if(wallet > price){
     setEatenSushi(true)
     onEaten(sushi)
     console.log(sushi)
