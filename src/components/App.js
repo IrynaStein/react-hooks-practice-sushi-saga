@@ -1,14 +1,28 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SushiContainer from "./SushiContainer";
 import Table from "./Table";
 
 const API = "http://localhost:3001/sushis";
 
 function App() {
+const [sushiP, setSushiP] = useState([])
+const [price, setPrice] = useState(100)
+
+useEffect(() => {
+  fetch("http://localhost:3001/sushis")
+  .then(resp => resp.json())
+  .then(data => setSushiP(data))
+}, [])
+
+function onEaten(sushi){
+    setPrice(mUV => mUV - sushi.price)
+}
+console.log(price)
+
   return (
     <div className="app">
-      <SushiContainer />
-      <Table />
+      <SushiContainer sushiP={sushiP} onEaten={onEaten} wallet={price}/>
+      <Table price={price}/>
     </div>
   );
 }
